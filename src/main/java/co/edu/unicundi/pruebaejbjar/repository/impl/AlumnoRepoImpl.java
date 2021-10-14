@@ -3,50 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.unicundi.pruebaejbjar.service.impl;
+package co.edu.unicundi.pruebaejbjar.repository.impl;
 
-import co.edu.unicundi.pruebaejbjar.service.IEstudianteService;
+import co.edu.unicundi.pruebaejbjar.entity.Alumno;
+import co.edu.unicundi.pruebaejbjar.repository.IAlumnoRepo;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author ASUS
  */
 @Stateless
-public class EstudianteServiceImpl implements IEstudianteService {
+public class AlumnoRepoImpl implements IAlumnoRepo{
+    
+    @PersistenceContext(unitName = "conexionPostgresql")
+    private EntityManager em;
+
+    @Override
+    public List<Alumno> listarTodos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Alumno listarPorId(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void guardar(Alumno obj) {
+         this.em.persist(obj);
+    }
+
+    @Override
+    public void editar(Alumno obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void eliminar(Integer id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     
-    @Override
-    public void listar() {
-           System.out.println("Logica desde EstudianteServiceImpl EJB");
-    }
-
-    @Override
-    public void listarPorId() {
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void guardar() {
-        String nombre, clave;
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void editar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void eliminar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    private void metodo1(){
-    }
-    
-    private void metodo2(){
-    }
     
 }

@@ -5,6 +5,7 @@
  */
 package co.edu.unicundi.pruebaejbjar.service;
 
+import co.edu.unicundi.pruebaejbjar.entity.Alumno;
 import javax.ejb.Local;
 
 /**
@@ -14,13 +15,13 @@ import javax.ejb.Local;
 //
 //@Remote
 @Local
-public interface IEstudianteService {
+public interface IAlumnoService {
     
     public void listar();
     
     public void listarPorId();
     
-    public void guardar();
+    public void guardar(Alumno obj);
     
     public void editar();
     
