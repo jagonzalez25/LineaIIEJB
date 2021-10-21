@@ -21,6 +21,6 @@ public interface ICrud<T, V> {
     
     public void editar(T obj);
     
-    public void eliminar(V id);
+    public void eliminar(T obj);
     
 }

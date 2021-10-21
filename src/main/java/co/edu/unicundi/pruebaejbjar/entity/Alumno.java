@@ -8,7 +8,11 @@ package co.edu.unicundi.pruebaejbjar.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -20,9 +24,17 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "alumno")
+
+@NamedQueries({
+    @NamedQuery(name = "Alumno.ListarTodos", query = "SELECT a FROM Alumno a")
+})
+
+
+
 public class Alumno implements Serializable {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     @NotNull(message = "Nombre es obligatorio")
