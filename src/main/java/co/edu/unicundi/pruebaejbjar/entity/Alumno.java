@@ -52,6 +52,8 @@ public class Alumno implements Serializable {
     @Column(name = "cedula", nullable = false, length = 12, unique = true)
     private String cedula;
     
+    
+    
     public Alumno() {
     }
 

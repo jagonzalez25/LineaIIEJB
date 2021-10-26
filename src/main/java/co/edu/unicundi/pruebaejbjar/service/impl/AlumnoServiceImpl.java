@@ -19,7 +19,7 @@ import javax.ejb.EJB;
  * @author ASUS
  */
 @Stateless
-public class IAlumnoServiceImpl implements IAlumnoService {
+public class AlumnoServiceImpl implements IAlumnoService {
 
     @EJB
     private IAlumnoRepo repo;
