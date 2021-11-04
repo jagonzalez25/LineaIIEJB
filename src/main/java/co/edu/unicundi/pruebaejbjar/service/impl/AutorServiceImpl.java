@@ -5,7 +5,9 @@
  */
 package co.edu.unicundi.pruebaejbjar.service.impl;
 
+import co.edu.unicundi.pruebaejbjar.entity.Alumno;
 import co.edu.unicundi.pruebaejbjar.entity.Autor;
+import co.edu.unicundi.pruebaejbjar.entity.Libro;
 import co.edu.unicundi.pruebaejbjar.exception.BussinessException;
 import co.edu.unicundi.pruebaejbjar.exception.ResourceNotFoundException;
 import co.edu.unicundi.pruebaejbjar.repository.IAutor;
@@ -26,27 +28,61 @@ public class AutorServiceImpl implements IAutorService {
     
     @Override
     public List<Autor> listar() {
-        return repo.listarTodos();
+        List<Autor> listaAutor = repo.listarTodos();
+        /*for (Autor autor : listaAutor) {
+            autor.getLibro().clear();
+            autor.setEdad(20);
+            autor.getLibro().get(0).setNombre("otro nombre");
+            
+              Libro libro = new Libro();
+              libro.setAutor(autor);
+              libro.setDescripcion("des");
+              libro.setNoPaginas(20);
+              libro.setNombre("nom lim");
+              autor.getLibro().add(libro);
+        }*/
+        //No se debe hacer
+      
+        return listaAutor;
     }
 
     @Override
     public Autor listarPorId(Integer id) throws ResourceNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           Autor autor = repo.listarPorId(id);
+           if(autor != null)
+               return autor;
+           else
+               throw new ResourceNotFoundException("Autor no encontrado");
     }
 
     @Override
     public void guardar(Autor obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if(obj.getLibro() != null && !obj.getLibro().isEmpty()){
+                for (Libro libro : obj.getLibro()) {
+                      libro.setAutor(obj);
+                }
+            }
+            this.repo.guardar(obj);
     }
 
+    //QUERY JPQL SQL
     @Override
     public void editar(Autor obj) throws BussinessException, ResourceNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //No es buena pracita
+        //Solucion hacer querys de edicion o quitar la casada
+        Autor autor = this.repo.listarPorId(obj.getId());
+        autor.setNombre(obj.getNombre());
+        autor.setApellido(obj.getApellido());
+        autor.setEdad(obj.getEdad());
+        this.repo.editar(obj);
     }
 
     @Override
     public void eliminar(Integer id) throws ResourceNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            Autor autor = listarPorId(id);
+            this.repo.eliminar(autor);
     }
+    
+    
     
 }

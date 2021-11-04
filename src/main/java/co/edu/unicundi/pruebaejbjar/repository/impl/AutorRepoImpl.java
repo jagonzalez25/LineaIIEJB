@@ -26,13 +26,16 @@ public class AutorRepoImpl implements IAutor{
 
     @Override
     public List<Autor> listarTodos() {
-       TypedQuery<Autor> query = em.createNamedQuery("Autor.ListarTodos", Autor.class);
+       
+        TypedQuery<Autor> query = em.createNamedQuery("Autor.ListarTodos", Autor.class);
+        //TypedQuery<Autor> query = em.createNamedQuery("Autor.ListarTodosSinLibro", Autor.class);
         return query.getResultList();
     }
 
     @Override
     public Autor listarPorId(Integer id) {
-         return em.find(Autor.class, id);
+         Autor autor = em.find(Autor.class, id);
+         return autor;
     }
 
     @Override

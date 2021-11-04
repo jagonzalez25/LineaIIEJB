@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 /**
@@ -84,6 +85,7 @@ public class Libro implements Serializable{
     }
 
     @JsonIgnore
+    @XmlTransient
     public Autor getAutor() {
         return autor;
     }

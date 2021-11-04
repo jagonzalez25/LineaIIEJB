@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,8 +31,14 @@ import javax.validation.constraints.Size;
 @Table(name = "autor")
 
 @NamedQueries({
-    @NamedQuery(name = "Autor.ListarTodos", query = "SELECT a FROM Autor a")
+    @NamedQuery(name = "Autor.ListarTodos", query = "SELECT a FROM Autor a"),
+    @NamedQuery(name = "Autor.ListarTodosSinLibro", query = "SELECT a.id, a.identificacion, a.nombre, a.apellido, a.edad FROM Autor a")
 })
+
+@NamedNativeQueries({
+    
+})
+
 public class Autor implements Serializable{
     
     @Id
