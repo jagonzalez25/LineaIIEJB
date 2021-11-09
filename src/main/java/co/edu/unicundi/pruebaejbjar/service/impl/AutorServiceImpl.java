@@ -57,6 +57,7 @@ public class AutorServiceImpl implements IAutorService {
 
     @Override
     public void guardar(Autor obj) {
+            //Si se quiere guardar en cascada
             if(obj.getLibro() != null && !obj.getLibro().isEmpty()){
                 for (Libro libro : obj.getLibro()) {
                       libro.setAutor(obj);

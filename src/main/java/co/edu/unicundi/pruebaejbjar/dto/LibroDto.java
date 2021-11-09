@@ -3,20 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.unicundi.pruebaejbjar.entity;
+package co.edu.unicundi.pruebaejbjar.dto;
 
+import co.edu.unicundi.pruebaejbjar.entity.Autor;
 import java.io.Serializable;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlTransient;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -24,44 +20,27 @@ import org.codehaus.jackson.annotate.JsonIgnore;
  *
  * @author ASUS
  */
-@Entity
-@Table(name = "libro")
-
-@NamedQueries({
-    @NamedQuery(name = "Libro.ListarTodos", query = "SELECT l FROM Libro l")
-})
-
-public class Libro implements Serializable{
+public class LibroDto implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;   
-    
-    @Column(name = "nombre", nullable = false, length = 30)
+   
     private String nombre;     
     
-    @Column(name = "descripcion", nullable = false, length = 200)
     private String descripcion;       
     
-    @Column(name = "no_paginas", nullable = false)
     private Integer noPaginas;
    
-    @ManyToOne
-    @JoinColumn(name = "id_autor", nullable = false)
-    private Autor autor;
-    
-    ////Forma 1
-    /*@Transient
-    private Integer idAutorAux;*/
+    private Integer idAutor;
 
-    public Libro() {
+    public LibroDto() {
     }
 
-    public Libro(String nombre, String descripcion, Integer noPaginas, Autor autor) {
+    public LibroDto(Integer id, String nombre, String descripcion, Integer noPaginas, Integer idAutor) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.noPaginas = noPaginas;
-        this.autor = autor;
+        this.idAutor = idAutor;
     }
 
     public Integer getId() {
@@ -96,25 +75,15 @@ public class Libro implements Serializable{
         this.noPaginas = noPaginas;
     }
 
-    @JsonIgnore
-    @XmlTransient
-    public Autor getAutor() {
-        return autor;
+    public Integer getIdAutor() {
+        return idAutor;
     }
 
-    public void setAutor(Autor autor) {
-        this.autor = autor;
+    public void setIdAutor(Integer idAutor) {
+        this.idAutor = idAutor;
     }
-
-    //Forma 1
-    /*public Integer getIdAutorAux() {
-        return idAutorAux;
-    }
-
-    public void setIdAutorAux(Integer idAutorAux) {
-        this.idAutorAux = idAutorAux;
-    }*/
-
+    
+    
    
     
     
