@@ -7,6 +7,7 @@ package co.edu.unicundi.pruebaejbjar.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -59,6 +60,8 @@ public class Autor implements Serializable{
     
     @OneToMany(mappedBy = "autor", fetch = FetchType.LAZY, cascade= CascadeType.ALL, orphanRemoval = true)
     private List<Libro> libro;
+    
+    
     
     public Autor(){
     
@@ -121,5 +124,33 @@ public class Autor implements Serializable{
     public void setLibro(List<Libro> libro) {
         this.libro = libro;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Autor other = (Autor) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return true;
+    }
+
+   
+    
     
 }
